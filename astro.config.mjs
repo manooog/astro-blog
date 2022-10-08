@@ -32,7 +32,7 @@ function myAdapter() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://blog.35iter.cn",
+  site: "https://www.35iter.cn",
   integrations: [mdx(), sitemap(), tailwind(), react()],
 
   // build: {
