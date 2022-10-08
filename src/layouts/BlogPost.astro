@@ -1,8 +1,8 @@
 ---
-import Edit from '../components/react/Edit'
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Content from "../components/Content.astro";
 import TableOfContent,{ Heading } from "../components/react/TableOfContent";
 
 export interface Props {
@@ -41,7 +41,7 @@ const {
 	<body>
 		<Header />
 		<main >
-			<section class="screen-container pt-8 md:pt-12 lg:pt-16 px-6 lg:px-8 flex justify-center">
+			<Content class='flex justify-center' >
 				<div class="flex-1"></div>
 				<article >
 					{heroImage && (
@@ -54,7 +54,6 @@ const {
 					)}
 					<div class="flex items-center">
 						<h1 class="title">{title}</h1>
-						<Edit client:visible />
 					</div>
 					{pubDate && <time>{pubDate}</time>}
 					{updatedDate && <div>Last updated on <time>{updatedDate}</time></div>}
@@ -64,19 +63,16 @@ const {
 
 				<div class="flex-1">
 					<TableOfContent headings={headings} />
-
 				</div>
 	
-			</section>
+			</Content>
 		</main>
 		<Footer />
 	</body>
 </html>
 
 <style>
-	main {
-		padding-top: var(--nav-height);
-	}
+	
 article {
 	max-width: 768px;
 }

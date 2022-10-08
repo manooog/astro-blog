@@ -1,0 +1,8 @@
+{
+  "pasteImage.path": "${projectRoot}/public/assets",
+  "pasteImage.basePath": "${projectRoot}/public/assets",
+  "pasteImage.prefix": "/assets/",
+  "pasteImage.filePathConfirmInputBoxMode": "onlyName",
+  "pasteImage.showFilePathConfirmInputBox": true,
+  "pasteImage.forceUnixStyleSeparator": true
+}

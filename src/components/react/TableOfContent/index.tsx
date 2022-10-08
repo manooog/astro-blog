@@ -10,6 +10,7 @@ export interface Heading {
 const TableOfContent: React.FC<{ headings: Heading[] }> = function ({
   headings,
 }) {
+  if (headings.length === 0) return null
   return (
     <div className={mergeClassName(styles.tableOfContent, "lg:block hidden")}>
       <p>目录</p>

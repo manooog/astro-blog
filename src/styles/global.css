@@ -86,11 +86,24 @@ html {
 
 	scroll-behavior: smooth;
 	scroll-padding-top: calc(var(--nav-height) + 40px);
+
 }
 
 main {
 	background-color: var(--background-color);
+	padding-top: var(--nav-height);
+
+	flex: 1;
 }
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+}
+
 
 .screen-container {
 	max-width: var(--screen-max-width);
