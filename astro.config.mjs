@@ -35,9 +35,9 @@ export default defineConfig({
   site: "https://blog.35iter.cn",
   integrations: [mdx(), sitemap(), tailwind(), react()],
 
-  build: {
-    format: "file",
-  },
+  // build: {
+  //   format: "file",
+  // },
 
   markdown: {
     shikiConfig: {
