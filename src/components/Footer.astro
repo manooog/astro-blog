@@ -1,0 +1,18 @@
+---
+import Login from './react/Login'
+const today = new Date();
+
+
+---
+
+<footer class="flex items-center justify-center">
+	&copy; {today.getFullYear()} YOUR NAME HERE. All rights reserved.
+	<Login client:visible />
+</footer>
+<style>
+	footer {
+		height: var(--footer-height);
+
+	}
+</style>
+

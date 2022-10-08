@@ -1,0 +1,46 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import ThemeButton from './react/ThemeButton'
+import { SITE_TITLE } from '../config';
+---
+
+<header class="md:fixed md:top-0 md:block hidden w-full">
+	<section class="screen-container flex items-center justify-between inner px-6 lg:px-8">
+		<h2>
+			{SITE_TITLE}
+		</h2>
+		<nav>
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/blog">Blog</HeaderLink>
+			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">Twitter</HeaderLink>
+			<HeaderLink href="https://github.com/withastro/astro" target="_blank">GitHub</HeaderLink>
+		</nav>
+
+		<div class="wrapper">
+			<ThemeButton client:load />
+		</div>
+	</section>
+</header>
+<style>
+	:root {
+		--nav-height: 55px;
+	}
+
+	.inner {
+		height: var(--nav-height);
+	}
+
+
+	header {
+		border-bottom: 1px solid var(--divider-color);
+		background-color: var(--background-color);
+	}
+	h2 {
+		margin: 0.5em 0;
+	}
+
+	.wrapper {
+		width: 40px;
+	}
+</style>
