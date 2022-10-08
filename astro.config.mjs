@@ -32,10 +32,12 @@ function myAdapter() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://blog.35iter.cn",
   integrations: [mdx(), sitemap(), tailwind(), react()],
-  output: "server",
-  adapter: myAdapter(),
+
+  build: {
+    format: "file",
+  },
 
   markdown: {
     shikiConfig: {
