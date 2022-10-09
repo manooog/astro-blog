@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { mergeClassName } from "../../../utils/classname"
-import MenuInner from "./MenuInner"
+import MenuInner from "./menuInner"
 
 const Menu: React.FC<{ className: string }> = ({ className }) => {
   const [modalVisible, setModalVisible] = useState(false)
