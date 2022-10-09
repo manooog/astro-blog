@@ -1,58 +1,116 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Content from '../components/Content.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+import BaseHead from "../components/BaseHead.astro"
+import Header from "../components/Header.astro"
+import Footer from "../components/Footer.astro"
+import Content from "../components/Content.astro"
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config"
 
 // Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob('./post/*.{md,mdx}')).sort(
-	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-);
+const posts = (await Astro.glob("./post/*.{md,mdx}")).sort(
+  (a, b) =>
+    new Date(b.frontmatter.pubDate).valueOf() -
+    new Date(a.frontmatter.pubDate).valueOf()
+)
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			ul {
-				list-style-type: none;
-				padding: unset;
-			}
-			ul li {
-				display: flex;
-			}
-			ul li time {
-				flex: 0 0 130px;
-				font-style: italic;
-				color: #595959;
-			}
-			ul li a:visited {
-				color: #8e32dc;
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<Content>
-				<ul>
-					{posts.map((post) => (
-						<li>
-							<time datetime={post.frontmatter.pubDate}>
-								{new Date(post.frontmatter.pubDate).toLocaleDateString('en-us', {
-									year: 'numeric',
-									month: 'short',
-									day: 'numeric',
-								})}
-							</time>
-							<a href={post.url}>{post.frontmatter.title}</a>
-						</li>
-					))}
-				</ul>
-			</Content>
-		</main>
-		<Footer />
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <Content>
+        <ul>
+          {
+            posts.map((post) => (
+              <>
+                <li class="sm:flex mb-2 hidden">
+                  <div class="img mr-2 flex-shrink-0">
+                    <div
+                      class="inner"
+                      style={{
+                        backgroundImage: `url(${post.frontmatter.heroImage})`,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <p>{post.frontmatter.description}</p>
+                  </div>
+                </li>
+                <li class=" mb-2 sm:hidden small">
+                  <a href={post.url}>
+                    <figure>
+                      <img class="img" src={post.frontmatter.heroImage} />
+
+                      <figcaption>
+                        <p class="title">{post.frontmatter.title}</p>
+                        <p class="text-ellipsis whitespace-nowrap overflow-hidden">
+                          {post.frontmatter.description}
+                        </p>
+                      </figcaption>
+                    </figure>
+                  </a>
+                </li>
+              </>
+            ))
+          }
+        </ul>
+      </Content>
+    </main>
+    <Footer />
+    <style>
+      li {
+        cursor: pointer;
+
+        a {
+          font-size: 1.7em;
+          color: var(--text-color-1);
+        }
+      }
+
+      .small {
+        .img {
+          width: 100%;
+          height: unset;
+        }
+
+        .title {
+          font-size: 1.2em;
+          font-weight: 400;
+        }
+
+        figcaption {
+          background-color: var(--background-mute);
+          padding: 4px;
+        }
+      }
+      .img {
+        height: 120px;
+        width: 180px;
+
+        display: inline-block;
+
+        overflow: hidden;
+
+        .inner {
+          height: 100%;
+          width: 100%;
+
+          background-position: center;
+          background-size: contain;
+
+          transition: transform 0.4s;
+        }
+
+        &.img:hover {
+          .inner {
+            transform: scale(1.5);
+          }
+        }
+      }
+    </style>
+  </body>
 </html>

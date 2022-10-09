@@ -1,25 +1,30 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import ThemeButton from './react/ThemeButton'
+import HeaderAuto from './react/HeaderAuto'
+import Menu from './react/Menu'
 import { SITE_TITLE } from '../config';
 ---
 
-<header class="md:fixed md:top-0 md:block hidden w-full">
+<header class="fixed top-0  w-full" id="header">
 	<section class="screen-container flex items-center justify-between inner px-6 lg:px-8">
-		<h2>
-			{SITE_TITLE}
-		</h2>
-		<nav>
+		<a href='/'>{SITE_TITLE}</a>
+		<nav class="md:block hidden">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/all-post">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 			<HeaderLink href="https://github.com/manooog" target="_blank">GitHub</HeaderLink>
 		</nav>
 
-		<div class="wrapper">
+		<div class="wrapper flex items-center">
 			<ThemeButton client:load />
+
+			<Menu client:load className='ml-4 md:hidden' />
 		</div>
+		
 	</section>
+
+	<HeaderAuto client:load />
 </header>
 <style>
 	:root {
@@ -34,12 +39,19 @@ import { SITE_TITLE } from '../config';
 	header {
 		border-bottom: 1px solid var(--divider-color);
 		background-color: var(--background-color);
+
+		transition: top .3s;
 	}
 	h2 {
 		margin: 0.5em 0;
 	}
 
 	.wrapper {
-		width: 40px;
+	}
+</style>
+
+<style is:global>
+	#header.need-hide {
+		top: calc(0px - var(--nav-height))
 	}
 </style>

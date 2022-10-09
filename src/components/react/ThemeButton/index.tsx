@@ -16,7 +16,8 @@ const ThemeButton: React.FC = () => {
       className={mergeClassName(
         styles.themeButton,
 
-        $theme === "dark" && styles.dark
+        $theme === "dark" && styles.dark,
+        "flex-shrink-0"
       )}
       onClick={() => {
         toggleTheme()

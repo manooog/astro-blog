@@ -41,9 +41,8 @@ const {
 	<body>
 		<Header />
 		<main >
-			<Content class='flex justify-center' >
-				<div class="flex-1"></div>
-				<article >
+			<Content class="lg:grid grid-cols-4" >
+				<article class="lg:col-span-2 lg:col-start-2" >
 					{heroImage && (
 						<img
 							width={720}
@@ -61,9 +60,7 @@ const {
 					<slot />
 				</article>
 
-				<div class="flex-1">
-					<TableOfContent headings={headings} />
-				</div>
+				<TableOfContent headings={headings} />
 	
 			</Content>
 		</main>
@@ -75,5 +72,13 @@ const {
 	
 article {
 	max-width: 768px;
+}
+
+
+</style>
+
+<style is:global>
+h1 {
+	font-size: 1.7em;
 }
 </style>
