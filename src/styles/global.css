@@ -85,6 +85,10 @@ html {
 
 }
 
+html.not-scroll {
+	overflow: hidden;
+}
+
 main {
 	background-color: var(--background-color);
 	padding-top: var(--nav-height);

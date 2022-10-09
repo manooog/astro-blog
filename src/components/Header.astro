@@ -17,9 +17,9 @@ import { SITE_TITLE } from '../config';
 		</nav>
 
 		<div class="wrapper flex items-center">
-			<ThemeButton client:load />
+			<ThemeButton className='hidden md:block' client:load />
 
-			<Menu client:load className='ml-4 md:hidden' />
+			<Menu client:idle className='ml-4 md:hidden' />
 		</div>
 		
 	</section>

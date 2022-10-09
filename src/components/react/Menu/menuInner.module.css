@@ -1,0 +1,35 @@
+.wrapper {
+  min-height: 50vh;
+  max-height: 100vh;
+  position: fixed;
+  z-index: 1;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  background-color: var(--background-color);
+
+  transform: translateY(-100%);
+
+  transition: transform 0.3s;
+
+  &.visible {
+    transform: translateX(0);
+  }
+
+  header {
+    height: var(--nav-height);
+    
+  }
+  .svgContainer {
+    height: calc(var(--nav-height) * 0.8);
+    width: calc(var(--nav-height) * 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: 1px solid var(--divider-color);
+    border-radius: 4px;
+  }
+}

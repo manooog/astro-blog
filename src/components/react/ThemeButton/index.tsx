@@ -4,7 +4,7 @@ import { initWithLocalStorage, theme, toggleTheme } from "../../../stores/theme"
 import { mergeClassName } from "../../../utils/classname"
 import styles from "./index.module.css"
 
-const ThemeButton: React.FC = () => {
+const ThemeButton: React.FC<{ className?: string }> = ({ className }) => {
   const $theme = useStore(theme)
 
   useEffect(() => {
@@ -15,6 +15,8 @@ const ThemeButton: React.FC = () => {
     <div
       className={mergeClassName(
         styles.themeButton,
+
+        className,
 
         $theme === "dark" && styles.dark,
         "flex-shrink-0"
