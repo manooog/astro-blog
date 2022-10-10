@@ -1,4 +1,5 @@
 ---
+import { marked } from "marked"
 import BlogPost from "../../layouts/BlogPost.astro"
 
 export async function getStaticPaths() {
@@ -13,6 +14,12 @@ export async function getStaticPaths() {
   }
 
   return _posts.map((post) => {
+    // marked 解析完 markdown 后，没有样式
+    // astro 官方也明确说了，这种方式不能继承 astro.config.mjs 中关于 markdown 的所有配置
+    post.attributes.richContent = marked.parse(post.attributes.richContent)
+
+    console.log(post.attributes.richContent)
+
     return {
       params: { id: post.id },
       props: {
@@ -26,4 +33,6 @@ export async function getStaticPaths() {
 const { headings, content } = Astro.props
 ---
 
-<BlogPost headings={headings} content={content} />
+<BlogPost headings={headings} content={content}>
+  <div set:html={content.richContent}></div>
+</BlogPost>
