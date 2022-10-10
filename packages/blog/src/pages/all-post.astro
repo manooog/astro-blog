@@ -5,12 +5,15 @@ import Footer from "../components/Footer.astro"
 import Content from "../components/Content.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../config"
 
-// Use Astro.glob() to fetch all posts, and then sort them by date.
-const posts = (await Astro.glob("./post/*.{md,mdx}")).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
-)
+const _postsRes = await fetch("http://localhost:1337/api/blogs")
+
+let _posts: Array<{
+  id: number
+  attributes: { title: string; richContent: string; [key: string]: any }
+}> = []
+if (_postsRes.status === 200) {
+  _posts = (await _postsRes.json()).data
+}
 ---
 
 <!DOCTYPE html>
@@ -24,31 +27,31 @@ const posts = (await Astro.glob("./post/*.{md,mdx}")).sort(
       <Content>
         <ul>
           {
-            posts.map((post) => (
+            _posts.map((post) => (
               <>
                 <li class="sm:flex mb-2 hidden">
                   <div class="img mr-2 flex-shrink-0">
                     <div
                       class="inner"
                       style={{
-                        backgroundImage: `url(${post.frontmatter.heroImage})`,
+                        backgroundImage: `url(${post.attributes.heroImage})`,
                       }}
                     />
                   </div>
                   <div>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <p>{post.frontmatter.description}</p>
+                    <a href={`/post/${post.id}`}>{post.attributes.title}</a>
+                    <p>{post.attributes.description}</p>
                   </div>
                 </li>
                 <li class=" mb-2 sm:hidden small">
-                  <a href={post.url}>
+                  <a href={`/post/${post.id}`}>
                     <figure>
-                      <img class="img" src={post.frontmatter.heroImage} />
+                      <img class="img" src={post.attributes.heroImage} />
 
                       <figcaption>
-                        <p class="title">{post.frontmatter.title}</p>
+                        <p class="title">{post.attributes.title}</p>
                         <p class="text-ellipsis whitespace-nowrap overflow-hidden">
-                          {post.frontmatter.description}
+                          {post.attributes.description}
                         </p>
                       </figcaption>
                     </figure>

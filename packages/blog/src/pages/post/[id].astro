@@ -1,0 +1,29 @@
+---
+import BlogPost from "../../layouts/BlogPost.astro"
+
+export async function getStaticPaths() {
+  const _postsRes = await fetch("http://localhost:1337/api/blogs")
+
+  let _posts: Array<{
+    id: number
+    attributes: { title: string; richContent: string; [key: string]: any }
+  }> = []
+  if (_postsRes.status === 200) {
+    _posts = (await _postsRes.json()).data
+  }
+
+  return _posts.map((post) => {
+    return {
+      params: { id: post.id },
+      props: {
+        headings: [],
+        content: post.attributes,
+      },
+    }
+  })
+}
+
+const { headings, content } = Astro.props
+---
+
+<BlogPost headings={headings} content={content} />
