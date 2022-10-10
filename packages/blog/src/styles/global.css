@@ -1,0 +1,114 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+ */
+body {
+	font-family: Verdana, sans-serif;
+	text-align: left;
+	background-color: #fff;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	line-height: 1.5;
+}
+a {
+	color: #3273dc;
+}
+nav a {
+	margin-right: 10px;
+}
+textarea {
+	width: 100%;
+	font-size: 16px;
+}
+input {
+	font-size: 16px;
+}
+content {
+	line-height: 1.6;
+}
+table {
+	width: 100%;
+}
+code {
+	padding: 2px 5px;
+	background-color: #f2f2f2;
+}
+pre {
+	padding: 1rem;
+}
+pre > code {
+	all: unset;
+}
+blockquote {
+	border: 1px solid #999;
+	color: #222;
+	padding: 2px 0px 2px 20px;
+	margin: 0px;
+	font-style: italic;
+}
+
+:root {
+	--screen-max-width: 1376px
+
+}
+
+
+:root {
+	--divider-color: rgba(60,60,60,.12);
+	--background-color: white;
+	--background-mute: rgb(241,241,241);
+	--text-color-1: rgb(33,53,71);
+
+	--footer-height: 100px
+	
+}
+
+:root.dark {
+	--divider-color: rgba(84,84,84,.48);
+
+	--background-color: rgb(26,26,26);
+	--background-mute: rgb(47,47,47);
+	--text-color-1: rgba(255,255,255,.87);
+}
+
+
+html.dark {
+	color-scheme: dark;
+}
+
+html {
+	color: var(--text-color-1);
+
+	scroll-behavior: smooth;
+	scroll-padding-top: calc(var(--nav-height) + 40px);
+
+}
+
+html.not-scroll {
+	overflow: hidden;
+}
+
+main {
+	background-color: var(--background-color);
+	padding-top: var(--nav-height);
+	flex: 1;
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+
+}
+
+
+.screen-container {
+	max-width: var(--screen-max-width);
+	margin: 0 auto;
+}
+
+* {
+	box-sizing: border-box;
+}

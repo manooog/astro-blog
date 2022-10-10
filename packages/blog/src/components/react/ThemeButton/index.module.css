@@ -1,0 +1,80 @@
+
+
+.themeButton {
+  height: 22px;
+  width: 40px;
+
+  border: 1px solid var(--divider-color);
+  border-radius: 11px;
+  
+
+  position: relative;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  background-color: var(--background-mute);
+
+  border-color: rgb(142,142,142);
+
+  
+
+  
+  
+  .wrapper {
+    position: absolute;
+
+    left: 2px;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    border-radius: 100%;
+    background-color: var(--background-color);
+    opacity: 0.5;
+
+    height: 18px;
+    width: 18px;
+  }
+
+  &.dark {
+
+    .sun {
+      opacity: 0;
+    }
+
+    .moon {
+      opacity: 1;
+    }
+    .wrapper {
+      left: 18px;
+    }
+  }
+
+  .sun {
+    opacity: 1;
+  }
+  
+  .moon {
+    opacity: 0;
+  }
+
+  svg {
+
+    fill: var(--text-color-1);
+    height: 12px;
+    width: 12px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0);
+  }
+
+
+  
+  svg,.wrapper {
+    transition: opacity 0.4s,left 0.4s;
+  }
+}

@@ -1,0 +1,15 @@
+.tableOfContent {
+
+  width: 224px;
+  position: sticky;
+  top: calc(var(--nav-height) + 40px);
+
+  max-height: calc(100vh - var(--nav-height) - 40px - var(--footer-height));
+
+  overflow-y: auto;
+
+  margin-left: auto;
+  padding-bottom: 32px;
+  
+ 
+}

@@ -1,0 +1,9 @@
+---
+export interface Props extends astroHTML.JSX.AnchorHTMLAttributes {}
+
+const { class: className, ...props } = Astro.props;
+---
+
+<section class:list={["screen-container pt-8 md:pt-12 lg:pt-16 px-6 lg:px-8", className]}>
+  <slot />
+</section>
