@@ -8,13 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: technote-space/get-diff-action@v6
-        id: blog-check
+        id: blog_check
         with:
           PATTERNS: |
             packages/blog/**/*.*
   static-github-pages-generate:
     needs: [conditional_job_check_files]
-    if: needs.conditional_job_check_files.steps.blog-check.outputs.diff
+    # if: needs.conditional_job_check_files.steps.blog_check.outputs.diff
     env:
       API_PREFIX: ${{ secrets.API_PREFIX}}
     runs-on: ubuntu-latest
@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 16
       - run: |
+          echo ${{ needs.conditional_job_check_files.steps.blog_check.outputs.diff }}
           yarn
           lerna bootstrap
           lerna run build --scope blog
