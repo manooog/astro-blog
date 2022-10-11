@@ -1,3 +1,3 @@
 ## astro blog
 
-astro is cool
+astro is cool,you can use any code
