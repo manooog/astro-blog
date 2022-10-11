@@ -8,6 +8,8 @@ on:
 jobs:
   conditional_job_check_files:
     runs-on: ubuntu-latest
+    outputs:
+      diff: ${{ steps.server-check.outputs.diff }}
     steps:
       - uses: actions/checkout@v2
       - uses: technote-space/get-diff-action@v6
@@ -17,7 +19,7 @@ jobs:
             packages/server/**/*.*
   deploy-lighthouse:
     needs: [conditional_job_check_files]
-    if: needs.conditional_job_check_files.steps.server-check.outputs.diff
+    if: needs.conditional_job_check_files.outputs.diff
     runs-on: ubuntu-latest
     steps:
       - name: SetEnv
