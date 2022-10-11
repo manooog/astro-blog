@@ -24,7 +24,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v3
         with:
-          context: .
+          context: ./packages/server
           tags: 35iter/blog-strapi:latest
       - name: Save Image
         run: |
