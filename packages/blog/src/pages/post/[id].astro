@@ -1,24 +1,20 @@
 ---
 import { marked } from "marked"
 import BlogPost from "../../layouts/BlogPost.astro"
+import { instance, ListItem, ListRes, Post } from "../../utils/request"
 
 export async function getStaticPaths() {
-  const _postsRes = await fetch("http://localhost:1337/api/blogs")
+  const _postsRes = await instance.get<ListRes<Post>>("/blogs")
 
-  let _posts: Array<{
-    id: number
-    attributes: { title: string; richContent: string; [key: string]: any }
-  }> = []
+  let _posts: Array<ListItem<Post>> = []
   if (_postsRes.status === 200) {
-    _posts = (await _postsRes.json()).data
+    _posts = _postsRes.data.data
   }
 
   return _posts.map((post) => {
     // marked 解析完 markdown 后，没有样式
     // astro 官方也明确说了，这种方式不能继承 astro.config.mjs 中关于 markdown 的所有配置
     post.attributes.richContent = marked.parse(post.attributes.richContent)
-
-    console.log(post.attributes.richContent)
 
     return {
       params: { id: post.id },
