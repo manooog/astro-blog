@@ -25,7 +25,7 @@ jobs:
         with:
           path: ./blog/dist
   deploy:
-    needs: build
+    needs: static-github-pages-generate
 
     permissions:
       pages: write # to deploy to Pages
