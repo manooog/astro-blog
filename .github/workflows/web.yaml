@@ -3,7 +3,18 @@ on:
   push:
     branches: [master]
 jobs:
+  conditional_job_check_files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: technote-space/get-diff-action@v6
+        id: blog-check
+        with:
+          PATTERNS: |
+            packages/blog/**/*.*
   static-github-pages-generate:
+    needs: [conditional_job_check_files]
+    if: needs.conditional_job_check_files.steps.blog-check.outputs.diff
     env:
       API_PREFIX: ${{ secrets.API_PREFIX}}
     runs-on: ubuntu-latest
