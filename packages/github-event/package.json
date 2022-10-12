@@ -1,0 +1,30 @@
+{
+  "name": "github-event",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "license": "ISC",
+  "main": "lib/github-event.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.yarnpkg.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manooog/manooog.github.io.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/github-event.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/manooog/manooog.github.io/issues"
+  },
+  "dependencies": {
+    "octokit": "^2.0.7"
+  }
+}
