@@ -1,4 +1,4 @@
-const { triggerWorkflow } = require("github-event");
+const { triggerWorkflow } = require("@35iter/github-event");
 
 // generic subscribe for generic handling
 module.exports = (strapi) => {
