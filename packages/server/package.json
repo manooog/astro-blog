@@ -15,7 +15,8 @@
     "@strapi/strapi": "4.4.3",
     "axios": "^1.1.2",
     "better-sqlite3": "7.4.6",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "github-event": "manooog/manooog.github.io/tree/master/packages/github-event"
   },
   "author": {
     "name": "A Strapi developer"
