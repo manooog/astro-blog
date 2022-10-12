@@ -2,8 +2,12 @@ name: blog
 on:
   push:
     branches: [master]
-  repository_dispatch:
-    types: [on-strapi-webhook]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "the job name want to trigger"
+        required: true
+        type: string
 jobs:
   conditional_job_check_files:
     runs-on: ubuntu-latest
@@ -18,7 +22,7 @@ jobs:
             packages/blog/**/*.*
   static-github-pages-generate:
     needs: [conditional_job_check_files]
-    if: needs.conditional_job_check_files.outputs.diff || on.repository_dispatch.types == 'on-strapi-webhook'
+    if: needs.conditional_job_check_files.outputs.diff || inputs.name == 'on-strapi-webhook'
     env:
       API_PREFIX: ${{ secrets.API_PREFIX}}
     runs-on: ubuntu-latest
